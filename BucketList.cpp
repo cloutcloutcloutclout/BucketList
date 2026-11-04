@@ -45,7 +45,9 @@ BucketList::~BucketList()
 	*/
 	// IMPLEMENT ME
 
-	delete[] buckets_;
+	delete[] buckets_; // this should work since its a 'new Node' using new and deconstructing naturally uses delete and for array its delete [] var;
+
+	// if not change in TODO l8r
 }
 
 int BucketList::h(const string &s) const
@@ -65,7 +67,6 @@ int BucketList::h(const string &s) const
 
 int BucketList::getSize() const
 {
-	// IMPLEMENT ME
 
 	// get size, probably iterate through the linked list and introduce a variable called size?
 	// go to first linked list node -> go next (if next is null pointer cut off) but if we go next we increment i?
@@ -76,7 +77,13 @@ int BucketList::getSize() const
 
 	*/
 
-	return -1; // dummy;
+	// IMPLEMENT ME
+
+	int size_ = 0; // bucket size, 0 for a start
+
+	// while or for loop could be good here, we can just do if pointer is null ignore but if it has smth increment ++ ?
+
+	return -1; // dummy, ok so this should be easy inshallah return a integer
 }
 
 int BucketList::getCap() const
