@@ -41,17 +41,17 @@ Mash empty string value is 0
 
 */
 
-Node::Node(const string &s)
+Node::Node(const string &s) // :: is a scope resolution operator, meaning what class this member belongs to, since its node its the node from bl.h right
 {
 	// IMPLEMENT ME
-	// :: means its a constructor, this will be for the pointers im guessing
 	// delete [] x; -> find node
-
 	/*
 
-	Constructor of Node, that creates a node storing the given string.
+	Node creation, 
 
 	*/
+
+
 }
 
 Node::~Node()
