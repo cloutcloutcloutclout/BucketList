@@ -30,7 +30,7 @@ BucketList::BucketList()
 
 	// could i just do a for loop and make all the items = to nullptr?
 
-	for (int i = 0; i <= INITIAL_CAP - 1; i++)
+	for (int i = 0; i < INITIAL_CAP - 1; i++)
 	{
 		buckets_[i] = nullptr;
 	}
@@ -44,6 +44,8 @@ BucketList::~BucketList()
 
 	*/
 	// IMPLEMENT ME
+
+	delete[] buckets_;
 }
 
 int BucketList::h(const string &s) const
