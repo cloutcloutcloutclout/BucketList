@@ -1,57 +1,10 @@
 #include "BucketList.h"
 
-/*
-Node -> just a node with head, data and pointer to next ig
-
-BucketList -> The Problem
-You will implement a data structure for storing a collection of strings and which supports various operations on them
-efficiently. We call the data structure "BucketList" here. (Nope, that's not its real name, I made it up.) Note that your role
-here is the developer of this data structure "library", not the "clients" using it. In other words, instead of just calling
-someone else's API, this time you are the one writing the things behind the API.
-Overview of the data structure
-From an object-oriented point of view, I should not prescribe how you should implement the internal workings of the data
-structure as long as your implementation complies with the specified external interface; nevertheless, this is an
-assignment, so I am going to prescribe it.The primary part of the data structure is an array of pointers. Each entry in the array,
-known as a bucket, is a pointer to the head of a linked list. Each string to be stored will be allocated (in a way to be described later)
-to a bucket. If multiple strings are allocated to the same bucket,
-each of them is stored in a different node in the linked list of that bucket.
-To faciliate the storage of strings into these linked lists, a Node class is defined as follows:
-
-The access point of this data structure is the buckets_ variable, which is an array of Node*. (As you will see below, this
-array will be dynamically resized, so instead of declaring it as Node*[], it is declared as Node**.) The size of this array is
-called the capacity of the BucketList (which is not the same thing as the number of strings stored). The BucketList class is
-made a "friend" of the Node class. You will learn what this means later in the module, but all you need to know now is that
-BucketList can access Node as if everything there is public.Here is a picture showing (conceptually) how seven strings apple, banana, cat, C++, orange, purple, python might be
-stored in a BucketList with capacity 10:
-
-
-----
-
-
-Mash function -> Which bucket a string goes to -> Takes in string and returns integer (int) between 0 and cap-1 (capacity - 1)
-cap = capacity (number of buckets)
-
-String s = s1 s2 s3 with n char's and ci = ASCII value to si
-
-Integer returned will be from formula (2n-1*c1 + 2n-2*c2 + ...  4*cn-2 + 2*cn-1 + cn) % cap
-
-Repeatedly take previous value * 2 add next digit and apply % cap and repeat.
-
-Mash empty string value is 0
-
-*/
-
 Node::Node(const string &s) // :: is a scope resolution operator, meaning what class this member belongs to, since its node its the node from bl.h right
 {
 	// IMPLEMENT ME
-	// delete [] x; -> find node
-	/*
-
-	Node creation, 
-
-	*/
-
-
+	s_ = s;			 // making s_ which is string equal to s which is reference s
+	next_ = nullptr; // next_ is next which is pointing to null pointer
 }
 
 Node::~Node()
