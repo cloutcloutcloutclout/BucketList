@@ -30,7 +30,7 @@ BucketList::BucketList()
 
 	// could i just do a for loop and make all the items = to nullptr?
 
-	for (int i = 0; i < INITIAL_CAP - 1; i++)
+	for (int i = 0; i < INITIAL_CAP; i++)
 	{
 		buckets_[i] = nullptr;
 	}
@@ -83,7 +83,11 @@ int BucketList::getSize() const
 
 	// while or for loop could be good here, we can just do if pointer is null ignore but if it has smth increment ++ ?
 
-	return -1; // dummy, ok so this should be easy inshallah return a integer
+	// since buckets_ is a ** meaning a pointer to an array of pointers
+
+	// for (int i = 0; i <= buckets_.size(); )  (START)
+
+	return size_; // dummy, ok so this should be easy inshallah return a integer
 }
 
 int BucketList::getCap() const
