@@ -10,9 +10,7 @@ Node::Node(const string &s) // :: is a scope resolution operator, meaning what c
 Node::~Node()
 {
 	/*
-
 	Node destructor. Depending on your implementation, you may or may not need to write anything here.
-
 	*/
 
 	// IMPLEMENT ME
@@ -20,13 +18,15 @@ Node::~Node()
 
 BucketList::BucketList()
 {
-	/*
+	// Construct a BucketList with Initial capacity from INITIAL_CAP
+	// Initialise each bucket to contain nullptr
 
-	Default constructor of BucketList, which constructs a BucketList with an initial capacity (number of
-	buckets) given by the constant INITIAL_CAP, and initialises each bucket to contain a null pointer.
-
-	*/
 	// IMPLEMENT ME
+
+	// The access point of this data structure is the buckets_ variable, which is an array of Node*.
+	buckets_ = new Node *[INITIAL_CAP]; // buckets_ is now a new Node* of size INITIAL_CAP.
+
+	// I need all of the items to point to nullptr so I could loop it
 }
 
 BucketList::~BucketList()
