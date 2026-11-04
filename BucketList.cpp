@@ -27,6 +27,13 @@ BucketList::BucketList()
 	buckets_ = new Node *[INITIAL_CAP]; // buckets_ is now a new Node* of size INITIAL_CAP.
 
 	// I need all of the items to point to nullptr so I could loop it
+
+	// could i just do a for loop and make all the items = to nullptr?
+
+	for (int i = 0; i <= INITIAL_CAP - 1; i++)
+	{
+		buckets_[i] = nullptr;
+	}
 }
 
 BucketList::~BucketList()
