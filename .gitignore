@@ -4,3 +4,7 @@ BucketListTesterMain.cpp
 .vscode
 Desc
 tasks.json
+BucketList.o
+main
+BucketListTesterMain
+BucketListTester.o
