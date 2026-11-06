@@ -117,7 +117,7 @@ int BucketList::h(const string &s) const
 
 	t = pow(2, size)
 	print(ascii_value, t)
-	
+
 
 	temp = ascii_value * t
 	print(temp)
@@ -135,15 +135,16 @@ int BucketList::h(const string &s) const
 
 	// IMPLEMENT ME
 
-	int mash_ = 0; // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
+	int mash_ = 0;		   // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
 	int n_of = s.length(); // be used for the 2^n calc
 
-	for(int i = 0; i < s.length(); i++){
+	for (int i = 0; i < s.length(); i++)
+	{
 
-		int ascii_value = int(s[i]); // we convert the string specific character i to integer here then preform formula? using int(select_character)
-		int pow_ = 1<<n_of - 1; // power of n_of we are going down incrementally for each char
+		int ascii_value = int(s[i]); // we convert the string specific character i to integer, turning it into ASCII value
+		int pow_ = 1 << (n_of - 1);	 // power of n_of we are going down incrementally for each char
 
-		int temp = ascii_value * pow_; // calc
+		int temp = (ascii_value * pow_) % cap_; // calc
 
 		mash_ += temp; // add temp answer to mash using +=
 
@@ -155,36 +156,31 @@ int BucketList::h(const string &s) const
 
 	mash_ %= cap_; // mod by cap_
 
-
-
 	return mash_; // dummy
 
 	// In C++ the "^" operator is a bitwise XOR. It does not work for raising to a power. The x << n is a left shift of the binary number which is the same as multiplying x by 2 n number of times and that can only be used when raising 2 to a power, and not other integers. The POW function is a math function that will work generically.
 
-
 	/*
-	
+
 	#include <iostream>
 	#include <string>
 	using namespace std;
 
-	int main() 
+	int main()
 	{
-    string a = "abcd";
-    int n = a.length(); 
+	string a = "abcd";
+	int n = a.length();
 
-    for (int i = 0; i < a.length(); i++){
-        int pow_ = 1<<n - 1;
-        cout << pow_ << endl;
-        n--;
-    }
-    return 0;
+	for (int i = 0; i < a.length(); i++){
+		int pow_ = 1<<n - 1;
+		cout << pow_ << endl;
+		n--;
 	}
-	
-	
+	return 0;
+	}
+
+
 	*/
-
-
 }
 
 int BucketList::getSize() const // return the number of strings currently stored in bucketList
