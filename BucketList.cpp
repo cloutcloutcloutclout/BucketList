@@ -141,7 +141,7 @@ int BucketList::h(const string &s) const
 	for(int i = 0; i < s.length(); i++){
 
 		int ascii_value = int(s[i]); // we convert the string specific character i to integer here then preform formula? using int(select_character)
-		int pow_ = 2^n_of; // power of n_of we are going down incrementally for each char
+		int pow_ = 1<<n_of - 1; // power of n_of we are going down incrementally for each char
 
 		int temp = ascii_value * pow_; // calc
 
@@ -150,10 +150,10 @@ int BucketList::h(const string &s) const
 		// condense to mash += int(s[i]) * pow(2, n_of); ?
 
 		// reduce n_of
-		--n_of;
+		n_of--;
 	}
 
-	mash_ = mash_ % cap_; // mod by cap_
+	mash_ %= cap_; // mod by cap_
 
 
 
