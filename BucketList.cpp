@@ -58,6 +58,10 @@ int BucketList::h(const string &s) const
 
 	// IMPLEMENT ME
 
+	if (s.empty()){
+		return 0; // if mash is empty, return 0
+	}
+
 	int mash_ = 0; // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
 
 	for (int i = 0; i < s.length(); i++){ // for loop going through each character and applying the mash formula
