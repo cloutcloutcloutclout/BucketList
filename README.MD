@@ -26,3 +26,4 @@ Done:
 2. Constructor BucketList
 3. Deconstructor BucketList, may be changed
 4. GetSize, MAY CHANGE THIS using private variables since I could technically just change it to increment based on INSERT AND DELETE class method (functions) basically making it easier? I think thats the o(1) way
+5. GetCap, might be done idk
