@@ -60,18 +60,13 @@ int BucketList::h(const string &s) const
 
 	int mash_ = 0; // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
 
-	int n_of = s.length();
-
-	for (int i = 0; i < s.length(); i++){
+	for (int i = 0; i < s.length(); i++){ // for loop going through each character and applying the mash formula
 
 		int ascii_ = int(s[i]); // character to ascii using int(s[i]), can use s[i]
-		int pow_ = 1 << (n_of--); // bit shift calc for the binary multiplication
 
-		int temp = (ascii_ * pow_);
+		mash_ = (mash_ * 2 + ascii_) % 10; // using the simplified method instead of my confusing one I get no makefile error with 'long' etc
 
-		mash_ = temp % 10;
 	}
-
 
 	return mash_; 
 
