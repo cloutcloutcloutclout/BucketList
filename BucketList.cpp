@@ -56,131 +56,25 @@ BucketList::~BucketList()
 int BucketList::h(const string &s) const
 {
 
-	/*
-
-	his is the mash function. It should return the mash value of the given string. This really
-	should not be a public function; it is made public just for testing purposes.
-
-	Ok so what is mash?
-
-	Which bucket a string goes to is determined by this mash function, this function
-	takes any string and returns an integer between 0 and cap-1 (inclusive) (Ok so we know that we need to return 0 -> cap-1 (cap_ -1))
-	where cap is the current capacity (Num of buckets), getSize? / Many finds to define it
-
-	c^i = ASCII value corresponding to character s^i
-	Like how A = 65 or z = 122
-
-	integer we return is by formula
-
-	2^n-1*c^1 + 2^n-2*c^2 + ... + 4^*c^n-2 + 2^*c^n-1 + c^n ) % cap
-
-	Naively calculating this way may be slow or even lead to integer overflow if the string is very long. The following is an
-	equivalent formula:((...((c1 *2 + c2)%cap) *2 + c3 )%cap) *2 + ... + cn-1 )%cap) *2 + cn)%cap
-
-
-	Summarized by:
-	Take previous value (start with first digit), multiply by 2 and add next digit
-	, apply the % cap and repeat
-
-
-
-	example:
-
-	For example, if there are currently 10 buckets, then for the string "Hello", where
-	the ASCII values are 72,101,108,108,111, the mash value is (16*72 + 8*101 + 4*108 + 2*108 + 111) % 10 = 2719 %
-	10 = 9, or equivalently (((((((72*2 + 101)%10) *2 + 108)%10) *2 + 108)%10) *2 + 111)%10 = 9, which means it
-	should go to buckets_[9].
-
-
-	Ok so if we did it for example A for apple
-	97,112,112,108,101
-
-	It does 16*72 since Hello is 5 in length? 1,2,4,8,16 u see so its basically reverse order of binary table from 128 etc to 1 which just halves
-
-	16*97 + 8*112 + 4*112 + 2*108 + 1*101 % cap lets say capacity is then 10 as well = 3 so it goes to buckets_[3]
-
-
-
-
-	We define an empty string to have a mash value of 0. // we could do else{ return 0; } for empty i guess.
-
-
-	python code i did
-
-	a = "abc"
-	size = len(a)
-	value = 0
-
-	for i in range(len(a)):
-	# conv letter to ascii, also find size
-	ascii_value = ord(a[i])
-
-	t = pow(2, size)
-	print(ascii_value, t)
-
-
-	temp = ascii_value * t
-	print(temp)
-
-	value += temp
-	print(value)
-	print(" ")
-	# size deincrement
-	size -= 1
-
-
-	// then for myself just mod by cap?
-
-	*/
-
 	// IMPLEMENT ME
 
-	int mash_ = 0;		   // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
-	int n_of = s.length(); // be used for the 2^n calc
+	int mash_ = 0; // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
 
-	for (int i = 0; i < s.length(); i++)
-	{
+	int n_of = s.length();
 
-		int ascii_value = int(s[i]); // we convert the string specific character i to integer, turning it into ASCII value
-		int pow_ = 1 << (n_of - 1);	 // power of n_of we are going down incrementally for each char
+	for (int i = 0; i < s.length(); i++){
 
-		int temp = (ascii_value * pow_) % cap_; // calc
+		int ascii_ = int(s[i]); // character to ascii using int(s[i]), can use s[i]
+		int pow_ = 1 << (n_of--); // bit shift calc for the binary multiplication
 
-		mash_ += temp; // add temp answer to mash using +=
+		int temp = (ascii_ * pow_);
 
-		// condense to mash += int(s[i]) * pow(2, n_of); ?
-
-		// reduce n_of
-		n_of--;
-	}
-
-	mash_ %= cap_; // mod by cap_
-
-	return mash_; // dummy
-
-	// In C++ the "^" operator is a bitwise XOR. It does not work for raising to a power. The x << n is a left shift of the binary number which is the same as multiplying x by 2 n number of times and that can only be used when raising 2 to a power, and not other integers. The POW function is a math function that will work generically.
-
-	/*
-
-	#include <iostream>
-	#include <string>
-	using namespace std;
-
-	int main()
-	{
-	string a = "abcd";
-	int n = a.length();
-
-	for (int i = 0; i < a.length(); i++){
-		int pow_ = 1<<n - 1;
-		cout << pow_ << endl;
-		n--;
-	}
-	return 0;
+		mash_ = temp % 10;
 	}
 
 
-	*/
+	return mash_; 
+
 }
 
 int BucketList::getSize() const // return the number of strings currently stored in bucketList
