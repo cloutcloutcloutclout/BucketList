@@ -1,26 +1,19 @@
 #include "BucketList.h"
 
-Node::Node(const string &s) // :: is a scope resolution operator, meaning what class this member belongs to, since its node its the node from bl.h right
+Node::Node(const string &s) // Constructor a Node with string s and next
 {
 	// IMPLEMENT ME
 	s_ = s;			 // making s_ which is string equal to s which is reference s
 	next_ = nullptr; // next_ is next which is pointing to null pointer
 }
 
-Node::~Node()
+Node::~Node() // Node destructor. Depending on your implementation, you may or may not need to write anything here.
 {
-	/*
-	Node destructor. Depending on your implementation, you may or may not need to write anything here.
-	*/
-
 	// IMPLEMENT ME
 }
 
-BucketList::BucketList()
+BucketList::BucketList() // Construct a BucketList with Initial capacity from INITIAL_CAP, Initialise each bucket to contain nullptr
 {
-	// Construct a BucketList with Initial capacity from INITIAL_CAP
-	// Initialise each bucket to contain nullptr
-
 	// IMPLEMENT ME
 
 	// The access point of this data structure is the buckets_ variable, which is an array of Node*.
@@ -39,16 +32,11 @@ BucketList::BucketList()
 	cap_ = INITIAL_CAP; // make this cap initial_cap since its being constructed of size OF initial cap meaning its the same value
 }
 
-BucketList::~BucketList()
+BucketList::~BucketList() // Destructor, that releases all memory used by the BucketList.
 {
-	/*
-
-	Destructor, that releases all memory used by the BucketList.
-
-	*/
 	// IMPLEMENT ME
 
-	// Have to go through each node and delete
+	// Have to go through each node in the linkedlist and delete it
 
 	for (int i = 0; i < cap_; i++)
 	{ // looping through cap_ , go into each list and delete node and change -> next
@@ -67,20 +55,20 @@ BucketList::~BucketList()
 	delete[] buckets_; // naturally works as we've gone through each LL node and deleted it, delete [] since its an array
 }
 
-int BucketList::h(const string &s) const
+int BucketList::h(const string &s) const // mash function, apply mash formula to ascii converted char and modulus by capacity
 {
 
 	// IMPLEMENT ME
 
 	if (s.empty())
 	{
-		return 0; // if mash is empty, return 0
+		return 0; // if mash is empty, return 0, isnt needed since i've declared mash_ as 0
 	}
 
 	int mash_ = 0; // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
 
-	for (size_t i = 0; i < s.length(); i++)
-	{ // for loop going through each character and applying the mash formula
+	for (int i = 0; i < s.length(); i++) // size_t swap if needed
+	{									 // for loop going through each character and applying the mash formula
 
 		int ascii_ = int(s[i]); // character to ascii using int(s[i]), can use s[i]
 
@@ -116,14 +104,8 @@ int BucketList::getSize() const // return the number of strings currently stored
 	return count; // return count for now, I may change to size_ in the future
 }
 
-int BucketList::getCap() const
+int BucketList::getCap() const // return the current capacity of the BucketList.
 {
-	/*
-
-	return the current capacity of the BucketList.
-
-	*/
-
 	// IMPLEMENT ME
 
 	// couldn't I just return capacity (cap_) here?
@@ -193,6 +175,11 @@ void BucketList::insert(const string &s)
 	of the strings. If s is already in the BucketList, do not make any changes to it.
 
 	*/
+	int mashed_ = h(s); // use the mash function on string to find the position
+
+	Node *insert_to = buckets_[mashed_]; // allocate the mash result to buckets_[x] where x is the position to be inserted
+
+	// check resizing, also if inserted need to do alphabetical order
 
 	// IMPLEMENT ME
 }
