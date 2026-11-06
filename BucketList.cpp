@@ -64,13 +64,18 @@ int BucketList::h(const string &s) const
 
 	int mash_ = 0; // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
 
-	for (int i = 0; i < s.length(); i++){ // for loop going through each character and applying the mash formula
+	for (size_t i = 0; i < s.length(); i++){ // for loop going through each character and applying the mash formula
 
 		int ascii_ = int(s[i]); // character to ascii using int(s[i]), can use s[i]
 
 		mash_ = (mash_ * 2 + ascii_) % 10; // using the simplified method instead of my confusing one I get no makefile error with 'long' etc
 
 	}
+
+
+	// int i changed to size_t to debug the makefile warning about long in s.length()
+
+
 
 	return mash_; 
 
