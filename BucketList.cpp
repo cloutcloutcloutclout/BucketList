@@ -61,11 +61,46 @@ int BucketList::h(const string &s) const
 	his is the mash function. It should return the mash value of the given string. This really
 	should not be a public function; it is made public just for testing purposes.
 
+	Ok so what is mash?
+
+	Which bucket a string goes to is determined by this mash function, this function
+	takes any string and returns an integer between 0 and cap-1 (inclusive) (Ok so we know that we need to return 0 -> cap-1 (cap_ -1))
+	where cap is the current capacity (Num of buckets), getSize? / Many finds to define it
+
+	c^i = ASCII value corresponding to character s^i
+	Like how A = 65 or z = 122
+
+	integer we return is by formula
+
+	2^n-1*c^1 + 2^n-2*c^2 + ... + 4^*c^n-2 + 2^*c^n-1 + c^n ) % cap
+
+	Naively calculating this way may be slow or even lead to integer overflow if the string is very long. The following is an
+	equivalent formula:((...((c1 *2 + c2)%cap) *2 + c3 )%cap) *2 + ... + cn-1 )%cap) *2 + cn)%cap
+
+
+	Summarized by:
+	Take previous value (start with first digit), multiply by 2 and add next digit
+	, apply the % cap and repeat
+
+
+
+	example:
+
+	For example, if there are currently 10 buckets, then for the string "Hello", where
+	the ASCII values are 72,101,108,108,111, the mash value is (16*72 + 8*101 + 4*108 + 2*108 + 111) % 10 = 2719 %
+	10 = 9, or equivalently (((((((72*2 + 101)%10) *2 + 108)%10) *2 + 108)%10) *2 + 111)%10 = 9, which means it
+	should go to buckets_[9].
+
+
+	We define an empty string to have a mash value of 0. // we could do else{ return 0; } for empty i guess.
+
 	*/
 
 	// IMPLEMENT ME
 
-	return -1; // dummy
+	int mash_ = 0; // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
+
+	return mash_; // dummy
 }
 
 int BucketList::getSize() const // return the number of strings currently stored in bucketList
@@ -110,6 +145,7 @@ int BucketList::getCap() const
 	// couldn't I just return capacity (cap_) here?
 
 	return cap_; // I think this should be fine since I declared it with the constructor as cap_ = INITIAL_CAP? and also private member var
+				 // can be subject to change based on mash, function, remove?
 }
 
 bool BucketList::contains(const string &s) const
