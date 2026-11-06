@@ -92,6 +92,16 @@ int BucketList::h(const string &s) const
 	should go to buckets_[9].
 
 
+	Ok so if we did it for example A for apple
+	97,112,112,108,101
+
+	It does 16*72 since Hello is 5 in length? 1,2,4,8,16 u see so its basically reverse order of binary table from 128 etc to 1 which just halves
+
+	16*97 + 8*112 + 4*112 + 2*108 + 1*101 % cap lets say capacity is then 10 as well = 3 so it goes to buckets_[3]
+
+
+
+
 	We define an empty string to have a mash value of 0. // we could do else{ return 0; } for empty i guess.
 
 	*/
