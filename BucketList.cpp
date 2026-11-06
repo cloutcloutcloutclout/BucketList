@@ -73,7 +73,7 @@ int BucketList::h(const string &s) const
 	}
 
 
-	// int i changed to size_t to debug the makefile warning about long in s.length()
+	// int i changed to size_t to debug the makefile warning about long in s.length(), just googled it simple but doesn't really needed to be changed so I might swap
 
 
 
@@ -85,11 +85,6 @@ int BucketList::getSize() const // return the number of strings currently stored
 {
 
 	// IMPLEMENT ME
-	// get size, probably iterate through the linked list and introduce a variable called size?
-	// go to first linked list node -> go next (if next is null pointer cut off) but if we go next we increment i?
-	// while or for loop could be good here
-	// since buckets_ is a ** meaning a pointer to an array of pointers
-	// for (int i = 0; i <= buckets_.size(); )  (START), this doesn't work since its a node so will loop with for and while inside list
 
 	// implementation I came up with, using a local variable to loop through each item in the LinkedList and increment since the item would have a string supposedly.
 	int count = 0; // declare a local counter for my loop to check items
