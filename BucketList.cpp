@@ -74,8 +74,7 @@ int BucketList::getSize() const // return the number of strings currently stored
 	// IMPLEMENT ME
 	// get size, probably iterate through the linked list and introduce a variable called size?
 	// go to first linked list node -> go next (if next is null pointer cut off) but if we go next we increment i?
-
-	// while or for loop could be good here, we can just do if pointer is null ignore but if it has smth increment ++ ?
+	// while or for loop could be good here
 	// since buckets_ is a ** meaning a pointer to an array of pointers
 	// for (int i = 0; i <= buckets_.size(); )  (START), this doesn't work since its a node so will loop with for and while inside list
 
@@ -108,7 +107,9 @@ int BucketList::getCap() const
 
 	// IMPLEMENT ME
 
-	return -1; // dummy
+	// couldn't I just return capacity (cap_) here?
+
+	return cap_; // I think this should be fine since I declared it with the constructor as cap_ = INITIAL_CAP? and also private member var
 }
 
 bool BucketList::contains(const string &s) const
