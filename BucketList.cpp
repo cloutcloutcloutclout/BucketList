@@ -26,14 +26,17 @@ BucketList::BucketList()
 	// The access point of this data structure is the buckets_ variable, which is an array of Node*.
 	buckets_ = new Node *[INITIAL_CAP]; // buckets_ is now a new Node* of size INITIAL_CAP.
 
+	// add size, capacity here?
+
 	// I need all of the items to point to nullptr so I could loop it
-
 	// could i just do a for loop and make all the items = to nullptr?
-
 	for (int i = 0; i < INITIAL_CAP; i++)
 	{
-		buckets_[i] = nullptr;
+		buckets_[i] = nullptr; // since you want it to contain nullptr in the brief I use a for loop to make it equal to nullptr
 	}
+
+	size_ = 0;			// Make the size 0 since its just being made as of now
+	cap_ = INITIAL_CAP; // make this cap initial_cap since its being constructed of size OF initial cap meaning its the same value
 }
 
 BucketList::~BucketList()
@@ -65,29 +68,34 @@ int BucketList::h(const string &s) const
 	return -1; // dummy
 }
 
-int BucketList::getSize() const
+int BucketList::getSize() const // return the number of strings currently stored in bucketList
 {
 
+	// IMPLEMENT ME
 	// get size, probably iterate through the linked list and introduce a variable called size?
 	// go to first linked list node -> go next (if next is null pointer cut off) but if we go next we increment i?
 
-	/*
-
-	return the number of strings currently stored in the BucketList
-
-	*/
-
-	// IMPLEMENT ME
-
-	int size_ = 0; // bucket size, 0 for a start
-
 	// while or for loop could be good here, we can just do if pointer is null ignore but if it has smth increment ++ ?
-
 	// since buckets_ is a ** meaning a pointer to an array of pointers
+	// for (int i = 0; i <= buckets_.size(); )  (START), this doesn't work since its a node so will loop with for and while inside list
 
-	// for (int i = 0; i <= buckets_.size(); )  (START)
+	// implementation I came up with, using a local variable to loop through each item in the LinkedList and increment since the item would have a string supposedly.
+	int count = 0; // declare a local counter for my loop to check items
 
-	return size_; // dummy, ok so this should be easy inshallah return a integer
+	for (int i = 0; i < cap_; i++)
+	{ // cap_ is the capacity, we'll go through each item and increment
+
+		Node *size_node = buckets_[i]; // goes to the head of the node, buckets_ and with this we'll check through each LL
+
+		while (size_node != nullptr)
+		{			 // simple while loop used from labs 3-5 using nullptr loops, even used in the example you gave here
+			count++; // increment since there'll be a string inside here
+
+			size_node = size_node->next_;
+		}
+	}
+
+	return count; // return count for now, I may change to size_ in the future
 }
 
 int BucketList::getCap() const
