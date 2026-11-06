@@ -150,7 +150,7 @@ int BucketList::h(const string &s) const
 		// condense to mash += int(s[i]) * pow(2, n_of); ?
 
 		// reduce n_of
-		n_of--;
+		--n_of;
 	}
 
 	mash_ = mash_ % cap_; // mod by cap_
@@ -158,6 +158,33 @@ int BucketList::h(const string &s) const
 
 
 	return mash_; // dummy
+
+	// In C++ the "^" operator is a bitwise XOR. It does not work for raising to a power. The x << n is a left shift of the binary number which is the same as multiplying x by 2 n number of times and that can only be used when raising 2 to a power, and not other integers. The POW function is a math function that will work generically.
+
+
+	/*
+	
+	#include <iostream>
+	#include <string>
+	using namespace std;
+
+	int main() 
+	{
+    string a = "abcd";
+    int n = a.length(); 
+
+    for (int i = 0; i < a.length(); i++){
+        int pow_ = 1<<n - 1;
+        cout << pow_ << endl;
+        n--;
+    }
+    return 0;
+	}
+	
+	
+	*/
+
+
 }
 
 int BucketList::getSize() const // return the number of strings currently stored in bucketList
