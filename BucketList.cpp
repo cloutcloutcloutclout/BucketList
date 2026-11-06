@@ -104,11 +104,58 @@ int BucketList::h(const string &s) const
 
 	We define an empty string to have a mash value of 0. // we could do else{ return 0; } for empty i guess.
 
+
+	python code i did
+
+	a = "abc"
+	size = len(a)
+	value = 0
+
+	for i in range(len(a)):
+	# conv letter to ascii, also find size
+	ascii_value = ord(a[i])
+
+	t = pow(2, size)
+	print(ascii_value, t)
+	
+
+	temp = ascii_value * t
+	print(temp)
+
+	value += temp
+	print(value)
+	print(" ")
+	# size deincrement
+	size -= 1
+
+
+	// then for myself just mod by cap?
+
 	*/
 
 	// IMPLEMENT ME
 
 	int mash_ = 0; // declare the return value of mash_ to 0, since we could just do a return 0 as return mash technically
+	int n_of = s.length(); // be used for the 2^n calc
+
+	for(int i = 0; i < s.length(); i++){
+
+		int ascii_value = int(s[i]); // we convert the string specific character i to integer here then preform formula? using int(select_character)
+		int pow_ = 2^n_of; // power of n_of we are going down incrementally for each char
+
+		int temp = ascii_value * pow_; // calc
+
+		mash_ += temp; // add temp answer to mash using +=
+
+		// condense to mash += int(s[i]) * pow(2, n_of); ?
+
+		// reduce n_of
+		n_of--;
+	}
+
+	mash_ = mash_ % cap_; // mod by cap_
+
+
 
 	return mash_; // dummy
 }
