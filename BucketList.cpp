@@ -48,9 +48,23 @@ BucketList::~BucketList()
 	*/
 	// IMPLEMENT ME
 
-	delete[] buckets_; // this should work since its a 'new Node' using new and deconstructing naturally uses delete and for array its delete [] var;
+	// Have to go through each node and delete
 
-	// if not change in TODO l8r
+	for (int i = 0; i < cap_; i++)
+	{ // looping through cap_ , go into each list and delete node and change -> next
+
+		Node *toDelete = buckets_[i]; // create a Node toDelete from buckets_[i] which is pointing to a linked list
+
+		while (toDelete != nullptr)
+		{ // while loop to go through and delete each node and save next for last deletion
+
+			Node *tempNext = toDelete->next_; // this node points to toDelete->Next so that we can delete without error
+			delete toDelete;				  // delete the node
+			toDelete = tempNext;			  // go to next
+		}
+	}
+
+	delete[] buckets_; // naturally works as we've gone through each LL node and deleted it, delete [] since its an array
 }
 
 int BucketList::h(const string &s) const
