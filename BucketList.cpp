@@ -241,6 +241,9 @@ void BucketList::remove(const string &s)
 		delete toDel;				   // delete temp node
 		size_--;					   // reduce size
 	}
+
+	// resizing for test case giving errors due to cap_ not changing since I've not updated it here.
+	
 }
 
 BucketList BucketList::clone() const
