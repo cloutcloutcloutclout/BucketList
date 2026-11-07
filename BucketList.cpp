@@ -163,37 +163,24 @@ string BucketList::toString() const
 	// Loop and add to string?
 	string toStr; // declare empty string where we'll add onto and return
 
-	for(int i = 0; i < cap_; i++){ // go through from 0 to cap_ which is the actual bucketlist capacity (0 to like 9 for example)
+	for (int i = 0; i < cap_; i++)
+	{ // go through from 0 to cap_ which is the actual bucketlist capacity (0 to like 9 for example)
 
-		Node* str_check = buckets_[i];
+		Node *str_check = buckets_[i];
 
-		toStr += i;
+		toStr += std::to_string(i); // for index (0-9) convert integer to string
 
 		while (str_check != nullptr)
 		{
-			toStr += str_check->s_;
-			str_check->next_; // go to next node (if theres another str in it and save to)
+			toStr += " ";				  // space between strings
+			toStr += str_check->s_;		  // insert the string into the toStr well STRING
+			str_check = str_check->next_; // go to next node (and add the other one using while)
 		}
-		
 
-
-
-
-		toStr += "/n";
-
+		toStr += "\n"; // endline is /n at the end, even if theres no string so its after the while in case
 	}
 
-
-
-
-
-
-
-
-
-
-
-	return toStr; // dummy
+	return toStr; // the string to return
 }
 
 void BucketList::insert(const string &s)
