@@ -223,22 +223,24 @@ void BucketList::remove(const string &s)
 	if (buckets_[rem_mash]->s_ == s) // uses the same logic for insert
 	{								 // Head
 
-		Node *toDel = new Node(s);		   // create a Node to temporarily hold and be deleted
+		Node *toDel = buckets_[rem_mash];  // create connected node to hold deletion
 		buckets_[rem_mash] = toDel->next_; // now equal to the next item , nullptr etc
 		delete toDel;
 		size_--; // reduce size by 1 since we're removing a node (item)
 	}
+	else
+	{
+		Node *current = buckets_[rem_mash]; // current is the bucketlist of mashed 's' using function
+		while (current->next_->s_ != s)
+		{							  // same logic to find insertion but for removal
+			current = current->next_; // we want to find the item so we go to next item
+		}
 
-	Node *current = buckets_[rem_mash]; // current is the bucketlist of mashed 's' using function
-	while (current->next_->s_ != s)
-	{							  // same logic to find insertion but for removal
-		current = current->next_; // we want to find the item so we go to next item
+		Node *toDel = current->next_;  // node points to the next in current, temporary holding so we can remove
+		current->next_ = toDel->next_; // make current next point to del next so we can save position
+		delete toDel;				   // delete temp node
+		size_--;					   // reduce size
 	}
-
-	Node *toDel = current->next_;  // node points to the next in current, temporary holding so we can remove
-	current->next_ = toDel->next_; // make current next point to del next so we can save position
-	delete toDel;				   // delete temp node
-	size_--;					   // reduce size
 }
 
 BucketList BucketList::clone() const
