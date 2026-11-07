@@ -131,33 +131,8 @@ bool BucketList::contains(const string &s) const // this is useful for insert si
 	return false;
 }
 
-string BucketList::toString() const
+string BucketList::toString() const // Output each bucketList with index and string from one string return
 {
-	/*
-
-	returns a string that gives a "visual" representation of the contents of the BucketList. More
-	precisely, there should be one row per bucket. Each row begins with a number which is the index to the buckets_
-	array (i.e. the mash value of the strings in that bucket), followed by each string in the linked list of that bucket, in
-	alphabetical order. Every string (and the leading number) are separated by one space character. For example, the
-	BucketList above will be printed like this:
-
-	0
-	1
-	2
-	3 apple banana purple
-	4
-	5
-	6 cat python
-	7 C++
-	8
-	9 orange
-	The whole printout is stored in one string (which will contain multiple lines, separated by the '\n' character) and
-	returned to the caller; the function itself does not print anything to the screen. Please take care not to include any
-	extra invisible whitespaces, such as trailing space character after the last string in each line (or after the number, if
-	there is no string in that bucket), or '\n' after the last line, or else you will fail the test cases.
-
-	*/
-
 	// IMPLEMENT ME
 
 	// Loop and add to string?
