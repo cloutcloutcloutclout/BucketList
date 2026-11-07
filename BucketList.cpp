@@ -182,16 +182,10 @@ void BucketList::insert(const string &s)
 	}
 
 	// Empty
-	if (buckets_[mashed_value] == nullptr)
+	if (buckets_[mashed_value] == nullptr) // if its empty insert
 	{
 		buckets_[mashed_value] = new Node(s);
-		size_++;
-		return;
-	}
-
-	// Dupe string (first)
-	if (buckets_[mashed_value]->s_ == s)
-	{
+		size_++; // Increment size since I will change that return getSize to a 1 line return size_ from insert and remove (for all ++)
 		return;
 	}
 
@@ -210,12 +204,6 @@ void BucketList::insert(const string &s)
 	while (current->next_ != nullptr && current->next_->s_ < s)
 	{
 		current = current->next_;
-	}
-
-	// Dupe
-	if (current->next_ != nullptr && current->next_->s_ == s)
-	{
-		return;
 	}
 
 	Node *temp = new Node(s);
