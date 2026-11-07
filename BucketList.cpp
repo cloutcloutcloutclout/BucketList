@@ -160,7 +160,40 @@ string BucketList::toString() const
 
 	// IMPLEMENT ME
 
-	return ""; // dummy
+	// Loop and add to string?
+	string toStr; // declare empty string where we'll add onto and return
+
+	for(int i = 0; i < cap_; i++){ // go through from 0 to cap_ which is the actual bucketlist capacity (0 to like 9 for example)
+
+		Node* str_check = buckets_[i];
+
+		toStr += i;
+
+		while (str_check != nullptr)
+		{
+			toStr += str_check->s_;
+			str_check->next_; // go to next node (if theres another str in it and save to)
+		}
+		
+
+
+
+
+		toStr += "/n";
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+	return toStr; // dummy
 }
 
 void BucketList::insert(const string &s)
