@@ -223,6 +223,28 @@ void BucketList::remove(const string &s)
 	*/
 
 	// IMPLEMENT ME
+
+	if (!contains(s)){ // if not in contain function ignore it and make no change
+		return;
+	}
+
+	int rem_mash = h(s); // mashed value 
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 BucketList BucketList::clone() const
