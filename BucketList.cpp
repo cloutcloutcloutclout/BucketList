@@ -114,7 +114,7 @@ int BucketList::getCap() const // return the current capacity of the BucketList.
 				 // can be subject to change based on mash, function, remove?
 }
 
-bool BucketList::contains(const string &s) const
+bool BucketList::contains(const string &s) const // this is useful for insert since it checks if the specific LL has the string already
 {
 
 	// DONE FOR YOU AS AN EXAMPLE
@@ -165,23 +165,63 @@ string BucketList::toString() const
 
 void BucketList::insert(const string &s)
 {
-	/*
-
-	add the string s to the BucketList. Before insertion, it should check whether resizing
-	should happen first; this is described separately below. Then, the string should be added to the linked list of the
-	bucket given by the mash value of the string. If the bucket is currently empty (has no other string), it should be
-	added as the only node in a new linked list. If there are other strings already in the same bucket, it should be inserted
-	into the linked list at a position that maintains the alphabetical order (i.e. the order used by C++ string comparisons)
-	of the strings. If s is already in the BucketList, do not make any changes to it.
-
-	*/
-	int mashed_ = h(s); // use the mash function on string to find the position
-
-	Node *insert_to = buckets_[mashed_]; // allocate the mash result to buckets_[x] where x is the position to be inserted
-
-	// check resizing, also if inserted need to do alphabetical order
-
 	// IMPLEMENT ME
+
+	if (contains(s)) // uses done example to check if this string already exists in the LinkedList in bucket
+	{
+		return; // return instead since its duplicate, we do not need.
+	}
+
+	int mashed_value = h(s); // use the mash function on string to find the position to be inserted
+
+	// check for resizing, if condition true, return, else insert.
+	double resize_check = (double)(size_ + 1) / cap_; // using double to get 0.xx to check with MAX
+	if (resize_check > MAX_LOAD_FACTOR)				  // MAX = 0.75, if we are above return
+	{
+		return; // return since we cant resize
+	}
+
+	// Empty
+	if (buckets_[mashed_value] == nullptr)
+	{
+		buckets_[mashed_value] = new Node(s);
+		size_++;
+		return;
+	}
+
+	// Dupe string (first)
+	if (buckets_[mashed_value]->s_ == s)
+	{
+		return;
+	}
+
+	// String before curr head
+	if (s < buckets_[mashed_value]->s_)
+	{
+		Node *tmp = new Node(s);
+		tmp->next_ = buckets_[mashed_value];
+		buckets_[mashed_value] = tmp;
+		size_++;
+		return;
+	}
+
+	// Middle to end insertion
+	Node *current = buckets_[mashed_value];
+	while (current->next_ != nullptr && current->next_->s_ < s)
+	{
+		current = current->next_;
+	}
+
+	// Dupe
+	if (current->next_ != nullptr && current->next_->s_ == s)
+	{
+		return;
+	}
+
+	Node *temp = new Node(s);
+	temp->next_ = current->next_;
+	current->next_ = temp;
+	size_++;
 }
 
 void BucketList::remove(const string &s)
