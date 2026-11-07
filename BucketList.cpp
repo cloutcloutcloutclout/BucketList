@@ -218,20 +218,27 @@ void BucketList::remove(const string &s)
 		return;
 	}
 
-	int rem_mash = h(s); // mashed value
+	int rem_mash = h(s); // mashed value using function
 
-	// memory of the node storing it must be properly released (size_-- also), remaining string in that list if any shall maintain alphabet order
-
-	// if after removal check if resizing needed?
-
-	if (buckets_[rem_mash]->s_ == s)
-	{ // Head
+	if (buckets_[rem_mash]->s_ == s) // uses the same logic for insert
+	{								 // Head
 
 		Node *toDel = new Node(s);		   // create a Node to temporarily hold and be deleted
 		buckets_[rem_mash] = toDel->next_; // now equal to the next item , nullptr etc
 		delete toDel;
 		size_--; // reduce size by 1 since we're removing a node (item)
 	}
+
+	Node *current = buckets_[rem_mash]; // current is the bucketlist of mashed 's' using function
+	while (current->next_->s_ != s)
+	{							  // same logic to find insertion but for removal
+		current = current->next_; // we want to find the item so we go to next item
+	}
+
+	Node *toDel = current->next_;  // node points to the next in current, temporary holding so we can remove
+	current->next_ = toDel->next_; // make current next point to del next so we can save position
+	delete toDel;				   // delete temp node
+	size_--;					   // reduce size
 }
 
 BucketList BucketList::clone() const
