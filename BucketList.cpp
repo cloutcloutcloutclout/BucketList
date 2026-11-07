@@ -163,7 +163,7 @@ string BucketList::toString() const
 	// Loop and add to string?
 	string toStr; // declare empty string where we'll add onto and return
 
-	for (int i = 0; i < cap_; i++)
+	for (int i = 0; i < cap_ - 1; i++)
 	{ // go through from 0 to cap_ which is the actual bucketlist capacity (0 to like 9 for example)
 
 		Node *str_check = buckets_[i];
@@ -177,6 +177,8 @@ string BucketList::toString() const
 			str_check = str_check->next_; // go to next node (and add the other one using while)
 		}
 
+		// testcase f failed since its adding an extra whitespace after the end index (lets say 9, gives a 10th line)
+		// to debug I can change the for loop to cap_ - 1
 		toStr += "\n"; // endline is /n at the end, even if theres no string so its after the while in case
 	}
 
