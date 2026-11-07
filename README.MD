@@ -31,5 +31,5 @@ Done:
 
 TestCases:
 
-testcasea; passed with return count, may change to introduce size_ with increment later?
-testcaseb; in-progress since its mash function h
+a-k; pass
+l; fail due to cap_ not changing
