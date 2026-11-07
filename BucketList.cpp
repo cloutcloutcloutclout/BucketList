@@ -108,10 +108,7 @@ int BucketList::getCap() const // return the current capacity of the BucketList.
 {
 	// IMPLEMENT ME
 
-	// couldn't I just return capacity (cap_) here?
-
-	return cap_; // I think this should be fine since I declared it with the constructor as cap_ = INITIAL_CAP? and also private member var
-				 // can be subject to change based on mash, function, remove?
+	return cap_; // cap_ private variable linked to the capacity
 }
 
 bool BucketList::contains(const string &s) const // this is useful for insert since it checks if the specific LL has the string already
@@ -154,9 +151,10 @@ string BucketList::toString() const // Output each bucketList with index and str
 
 		// testcase f failed since its adding an extra whitespace after the end index (lets say 9, gives a 10th line)
 		// debug changing the for loop did not work so I can change to an if statement
-		if (i < cap_ - 1){
+		if (i < cap_ - 1)
+		{
 			toStr += "\n"; // endline is /n at the end, even if theres no string so its after the while in case
-		} 
+		}
 	}
 
 	return toStr; // the string to return
@@ -213,38 +211,27 @@ void BucketList::insert(const string &s)
 
 void BucketList::remove(const string &s)
 {
-	/*
-
-	remove the string s from the BucketList. The memory of the node storing it must
-	be properly released. The remaining strings in the list (if any) should maintain their alphabetical order. After removal,
-	it should check whether resizing should happen; again this will be described separately. If s is not in the BucketList,
-	and do not make any changes.
-
-	*/
-
 	// IMPLEMENT ME
 
-	if (!contains(s)){ // if not in contain function ignore it and make no change
+	if (!contains(s))
+	{ // if not in contain function ignore it and make no change
 		return;
 	}
 
-	int rem_mash = h(s); // mashed value 
+	int rem_mash = h(s); // mashed value
 
-	
+	// memory of the node storing it must be properly released (size_-- also), remaining string in that list if any shall maintain alphabet order
 
+	// if after removal check if resizing needed?
 
+	if (buckets_[rem_mash]->s_ == s)
+	{ // Head
 
-
-
-
-
-
-
-
-
-
-
-
+		Node *toDel = new Node(s);		   // create a Node to temporarily hold and be deleted
+		buckets_[rem_mash] = toDel->next_; // now equal to the next item , nullptr etc
+		delete toDel;
+		size_--; // reduce size by 1 since we're removing a node (item)
+	}
 }
 
 BucketList BucketList::clone() const
